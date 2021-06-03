@@ -1,0 +1,102 @@
+1.to clean the react project only index.html file is needed in public folder.
+favicon.ico can be keep there for web icon
+
+in src folder app.js and index.js need to be kept
+
+service worker is for mobile and offline  mode
+
+2. React is for creating react element
+3.ReactDom.render render the react element into html page specified id;
+4. return multiple line using ()
+
+return (<h1> hello 
+<span> world </span>
+</h1>);
+
+5. react fragment, react element always need to be under one parent, if it not possible then we can use react fragment <> </> like this.
+6. class and for is reserved keyword for js, 
+in jsx we need to use className and htmlFor respectively for jsx.
+6. this.setState(prevState=>({count:prevState.count+amount}));
+
+use prevState if there are more then 1 setState that is modifying same data or is dependent on same data 
+cause setState is asynchronous.
+7.setState({count:0}),doesnot change other object
+
+8. import React ,{useState}from 'react'
+
+export default function CounterHooks({initialCounter}) {
+  const [count,setCount]=useState(initialCounter);
+  return (
+    <div>
+    <button onClick={()=>setCount(count-1)}>-</button>
+    <span>{count}</span>
+    <button onClick={()=>setCount(prevCount=>prevCount+1)}>+</button>
+  </div>
+  )
+}
+
+9.useState needs to be on beginning of the component function.
+
+   const [count,setCount]=useState(initialCounter);
+ const [count1,setCount1]=useState(initialCounter1);
+
+ 10. context
+ a. context provider
+ import React,{useState} from 'react';
+export const ThemeContext=React.createContext();
+
+function App() {
+  const [theme,setTheme]=useState('red')
+  return (
+    <ThemeContext.Provider value={{backgroundColor:theme}}>  
+    <h1>CounterHooks</h1>
+<CounterHooks initialCounter={0}/>
+<h1>Counter</h1>
+<Counter initialCounter={0}/>
+<button onClick={
+  ()=>setTheme(prevTheme=>(prevTheme==='red'?'blue':'red') )
+}>toggle</button>
+</ThemeContext.Provider>
+    );
+}
+
+export const ContextName=React.createContext();
+
+<ContextName.Provider value={context
+data or object here}>
+</ContextName.Provider>
+ 
+b.
+ <ThemeContext.Provider value={{backgroundColor:theme}}> 
+
+ Provider must need value to pass data like this.
+
+ c. context consumer in class component
+
+ import { ThemeContext } from './App';
+return(
+      <ThemeContext.Consumer>
+        {style=>(<div>
+        <button style={style} onClick={()=>this.handleCountChange(-1)}>-</button>
+        <span>{this.state.count}</span>
+        <button style={style}  onClick={()=>this.handleCountChange(1)}>+</button>
+      </div> )}
+      
+      </ThemeContext.Consumer>
+)
+
+so <ContextName.Consumer>
+{
+contextValue=>(
+  use contextValue here with jsx
+)//
+}
+</ContextName.Consumer>
+ 11. ternary operator is not single line statement,
+ need to wrap in () , without () it will not work
+ prevTheme=>(prevTheme==='red'?'blue':'red')
+
+ 12. context consumer in function
+import useContext
+   const style=useContext(ThemeContext);
+need to use useContext at top of the function component 
