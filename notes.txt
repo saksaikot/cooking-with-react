@@ -100,3 +100,6 @@ contextValue=>(
 import useContext
    const style=useContext(ThemeContext);
 need to use useContext at top of the function component 
+
+13. to build : npm run build
+build is the optimize version of the project, is under build folder
