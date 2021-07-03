@@ -103,3 +103,58 @@ need to use useContext at top of the function component
 
 13. to build : npm run build
 build is the optimize version of the project, is under build folder
+14. to import css use '' single quote
+15.props can be sent in spread operator like this {...objects}
+16.when destructuring prop parameters if there is more then 2 property then its easy to destructuring it later like this
+(props){
+  const {
+    amount,
+    name,
+    id
+    }=props
+}
+17. when maps or array is used to return react element then key attribute is must need to use.
+<Count key={count.id} {...count}>
+
+18. use separate css folder.
+19. use @import-normalize; to normalize default css across different browser.
+20.use separate css file and import in app.css, in generally it is not recommended but with react it will automatically combined and put it into single file  
+21. did mistake in font-face css format("woff"), format(" need to put in quotes")
+@font-face {
+  font-family: Gotham Rounded;
+  src: url("../fonts/GothamRounded-Bold.woff") format("woff"),
+    url("../fonts/GothamRounded-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+22.useEffect
+
+can use more then once like this
+const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    const localRecipes = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (localRecipes !== null) setRecipes(JSON.parse(localRecipes));
+    else setRecipes(sampleRecipes);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
+  }, [recipes]);
+
+  23. first parameter is function and second is array of dependency,
+  [recipes] means depend on recipes change, [] there is no dependency 
+  so only run once
+  24. useEffect return need a function, get called upon delete the element or on unmount the element
+  useEffect(()=>{
+    console.log("when rendered");
+    return ()=>{
+      console.log("component unmounted");
+    }
+  });
+  25.useEffect codeBlock and return order:
+
+  1. codeBlock, no return
+  2.return first,then codeBlock
+
+when unmount only return
